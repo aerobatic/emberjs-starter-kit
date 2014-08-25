@@ -1,0 +1,14 @@
+{
+  "name": "emberjs-starter-kit",
+  "version": "0.0.1",
+  "homepage": "https://github.com/aerobatic/emberjs-starter-kit",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "qunit": "~1.15.0",
+    "jquery": "~2.1.1",
+    "ember": "~1.7.0",
+    "jquery-mockjax": "~1.5.4",
+    "ember-qunit": "~0.1.8"
+  }
+}

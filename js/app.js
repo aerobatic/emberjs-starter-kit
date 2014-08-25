@@ -1,11 +1,13 @@
+Ember.Application.initializer({
+  name: 'aerobaticInit',
+  initialize: function(container, application) {
+    application.set('aerobaticConfig', window.__config__);
+  }
+});
+
 App = Ember.Application.create();
 
 App.Router.map(function() {
   // put your routes here
-});
-
-App.IndexRoute = Ember.Route.extend({
-  model: function() {
-    return ['red', 'yellow', 'blue'];
-  }
+  this.route("index", { path: "/" });
 });

@@ -1,0 +1,33 @@
+{
+  "name": "emberjs-starter-kit",
+  "version": "0.0.1",
+  "description": "Ember starter kit for Aerobatic apps",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-aerobatic": "~0.2.1",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-uglify": "~0.5.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "handlebars": "^1.3.0",
+    "grunt-ember-templates": "^0.4.21",
+    "karma": "^0.12.22",
+    "qunitjs": "^1.14.0",
+    "karma-qunit": "^0.1.3",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "grunt-karma": "^0.8.3",
+    "ember-template-compiler": "^1.6.1"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aerobatic/emberjs-starter-kit.git"
+  },
+  "homepage": "https://github.com/aerobatic/emberjs-starter-kit"
+}
