@@ -1,3 +1,4 @@
+// Custom initializer for Aerobatic
 Ember.Application.initializer({
   name: 'aerobaticInit',
   initialize: function(container, application) {

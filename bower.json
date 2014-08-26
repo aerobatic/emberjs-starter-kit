@@ -9,6 +9,7 @@
     "jquery": "~2.1.1",
     "ember": "~1.7.0",
     "jquery-mockjax": "~1.5.4",
-    "ember-qunit": "~0.1.8"
+    "ember-qunit": "~0.1.8",
+    "normalize-css": "~3.0.1"
   }
 }

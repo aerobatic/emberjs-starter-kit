@@ -8,13 +8,23 @@ module.exports = function(grunt) {
     uglify: {
       build: {
         files: {
-          'dist/app.min.js': ['js/**/*.js']
+          'dist/app.min.js': ['tmp/templates.js', 'js/**/*.js']
         }
+      }
+    },
+    concat: {
+      dist: {
+        src: [
+          'vendor/jquery/dist/jquery.min.js',
+          'vendor/handlebars/handlebars.min.js',
+          'vendor/ember/ember.min.js'
+        ],
+        dest: 'dist/vendor.min.js'
       }
     },
     cssmin: {
       minify: {
-        src: ['css/*.css'],
+        src: ['vendor/normalize-css/normalize.css', 'css/*.css'],
         dest: 'dist/app.min.css'
       }
     },
@@ -96,7 +106,7 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', ['build', 'aerobatic:deploy']);
   grunt.registerTask('test', ['emberTemplates', 'karma']);
 
-  grunt.registerTask('build', ['jshint', 'emberTemplates', 'cssmin', 'uglify']);
+  grunt.registerTask('build', ['concat', 'jshint', 'emberTemplates', 'cssmin', 'uglify']);
   grunt.registerTask('snapshot', ['aerobatic:snapshot']);
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -104,6 +114,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-aerobatic');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ember-templates');
 };
