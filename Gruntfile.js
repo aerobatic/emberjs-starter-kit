@@ -3,96 +3,83 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     jshint: {
-      all: ['Gruntfile.js', 'js/**/*.js', 'test/**/*.js']
+      all: ['Gruntfile.js', 'app/js/**/*.js', 'test/**/*.js']
     },
     uglify: {
       build: {
         files: {
-          'dist/app.min.js': ['tmp/templates.js', 'js/**/*.js']
+          'dist/app.min.js': ['tmp/templates.js', 'app/js/**/*.js']
         }
+      }
+    },
+    copy: {
+      dist: {
+        files: [
+          {src: 'app/index.html', dest: 'dist/index.html'},
+          {expand: true, cwd:'app', src: ['images/**'], dest: 'dist/'}
+        ]
       }
     },
     concat: {
       dist: {
         src: [
-          'vendor/jquery/dist/jquery.min.js',
-          'vendor/handlebars/handlebars.min.js',
-          'vendor/ember/ember.min.js'
+          'bower_components/jquery/dist/jquery.min.js',
+          'bower_components/handlebars/handlebars.min.js',
+          'bower_components/ember/ember.min.js'
         ],
         dest: 'dist/vendor.min.js'
       }
     },
     cssmin: {
       minify: {
-        src: ['vendor/normalize-css/normalize.css', 'css/*.css'],
+        src: ['bower_components/normalize-css/normalize.css', 'app/css/*.css'],
         dest: 'dist/app.min.css'
       }
     },
     emberTemplates: {
       compile: {
         options: {
-          templateBasePath: /templates/
+          templateBasePath: /app\/templates\//
         },
         files: {
-          "tmp/templates.js": "templates/**/*.hbs"
+          "app/tmp/templates.js": "app/templates/**/*.hbs"
         }
       }
     },
     watch: {
       options: {
-        spawn: true,
-        livereload: true
-      },
-      html: {
-        files: ['index.html']
+        spawn: true
       },
       templates: {
-        files: ['templates/**/*.hbs'],
+        files: ['app/templates/**/*.hbs'],
         tasks: ['emberTemplates']
-      },
-      js: {
-        files: ['js/**/*.js'],
-        tasks: ['jshint']
-      },
-      css: {
-        files: ['css/*.css']
       }
-    },
-    aerobatic: {
-      deploy: {
-        cowboy: true,
-        src: ['index.html', 'dist/**/*.*', 'images/*.*']
-      },
-      sim: {
-        port: 3000,
-        livereload: true
-      },
     },
     // See https://github.com/karma-runner/grunt-karma for more options
     karma: {
       options: {
         files: [
-          "vendor/jquery/dist/jquery.min.js",
-          "vendor/handlebars/handlebars.js",
-          "vendor/ember/ember.js",
-          "vendor/ember-qunit/dist/globals/main.js",
-          "vendor/jquery-mockjax/jquery.mockjax.js",
-          'js/**/*.js',
+          "bower_components/jquery/dist/jquery.min.js",
+          "bower_components/handlebars/handlebars.js",
+          "bower_components/ember/ember.js",
+          "bower_components/ember-qunit/dist/globals/main.js",
+          "bower_components/jquery-mockjax/jquery.mockjax.js",
+          'app/js/**/*.js',
           'tests/karma-bootstrap.js',
           'tests/unit/**/*.js',
           'tmp/templates.js'
         ],
         frameworks: ['qunit'],
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
         logLevel: 'INFO',
         plugins : [
           'karma-qunit',
-          'karma-phantomjs-launcher'
+          'karma-chrome-launcher'
         ],
         reporters: 'dots',
         packages: {
           name: 'ember-qunit',
-          location: 'vendor/ember-qunit/dist/globals/main.js'
+          location: 'bower_components/ember-qunit/dist/globals/main.js'
         }
       },
       unit: {
@@ -102,19 +89,15 @@ module.exports = function(grunt) {
   });
 
   // Specify the sync arg to avoid blocking the watch
-  grunt.registerTask('sim', ['build', 'aerobatic:sim:sync', 'watch']);
-  grunt.registerTask('deploy', ['build', 'aerobatic:deploy']);
   grunt.registerTask('test', ['emberTemplates', 'karma']);
-
-  grunt.registerTask('build', ['concat', 'jshint', 'emberTemplates', 'cssmin', 'uglify']);
-  grunt.registerTask('snapshot', ['aerobatic:snapshot']);
+  grunt.registerTask('build', ['concat', 'jshint', 'emberTemplates', 'cssmin', 'uglify', 'copy']);
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-aerobatic');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ember-templates');
 };
