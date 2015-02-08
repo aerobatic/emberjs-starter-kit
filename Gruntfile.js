@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     uglify: {
       build: {
         files: {
-          'dist/app.min.js': ['tmp/templates.js', 'app/js/**/*.js']
+          'dist/app.min.js': ['app/tmp/templates.js', 'app/js/**/*.js']
         }
       }
     },
