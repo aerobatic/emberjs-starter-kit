@@ -67,7 +67,7 @@ module.exports = function(grunt) {
           'app/js/**/*.js',
           'tests/karma-bootstrap.js',
           'tests/unit/**/*.js',
-          'tmp/templates.js'
+          'app/tmp/templates.js'
         ],
         frameworks: ['qunit'],
         browsers: ['Chrome'],

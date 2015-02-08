@@ -1,6 +1,6 @@
-.aerobatic
 vendor
 dist
 tmp
+app/tmp
 node_modules
 .DS_Store
