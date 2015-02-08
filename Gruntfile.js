@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
-          'bower_components/jquery/dist/jquery.min.js',
+          'node_modules/jquery/dist/jquery.min.js',
           'bower_components/handlebars/handlebars.min.js',
           'bower_components/ember/ember.min.js'
         ],
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     },
     cssmin: {
       minify: {
-        src: ['bower_components/normalize-css/normalize.css', 'app/css/*.css'],
+        src: ['node_modules/normalize-css/normalize.css', 'app/css/*.css'],
         dest: 'dist/app.min.css'
       }
     },
@@ -59,11 +59,11 @@ module.exports = function(grunt) {
     karma: {
       options: {
         files: [
-          "bower_components/jquery/dist/jquery.min.js",
+          "node_modules/jquery/dist/jquery.min.js",
           "bower_components/handlebars/handlebars.js",
           "bower_components/ember/ember.js",
           "bower_components/ember-qunit/dist/globals/main.js",
-          "bower_components/jquery-mockjax/jquery.mockjax.js",
+          "node_modules/jquery-mockjax/jquery.mockjax.js",
           'app/js/**/*.js',
           'tests/karma-bootstrap.js',
           'tests/unit/**/*.js',

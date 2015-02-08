@@ -6,3 +6,8 @@ This repo provides a solid starting point for building your own Ember single pag
 `grunt test`
 
 You can see the emberjs-starter-kit app live at http://emberjs-starter-kit.aerobaticapp.com.
+
+## Create App
+To create your own app from this template, simply run:
+
+`yoke create-app --github 'aerobatic/ember-starter --github-branch 'grunt'`
