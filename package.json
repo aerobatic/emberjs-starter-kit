@@ -27,6 +27,7 @@
   "scripts": {
     "test": "grunt test",
     "watch": "grunt watch",
+    "build": "grunt build",
     "_init": "grunt emberTemplates"
   },
   "repository": {
